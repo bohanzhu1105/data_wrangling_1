@@ -120,3 +120,51 @@ filter(pups_df, sex == 1)
 filter(pups_df, pd_walk < 11, sex == 2)
 ```
 
+##`mutate`
+use `mutate()` to create or modify vairables
+
+```{r}
+mutate(
+  litters_df,
+  wt_gain = gd18_weight -gd0_weight,
+  group = str_to_lower(group)
+)
+```
+
+## `arrange`
+
+use `arrange()` arranges things
+
+```{r}
+arrange(litters_df,desc(pups_born_alive))
+arrange(litters_df,group,pups_born_alive)
+```
+
+## PIPES
+
+```{r}
+
+litters_df=
+  read_csv("data/FAS_litters.csv", na = c("NA",".","")) |>
+  janitor::clean_names() |> 
+  select(group, litter_number,starts_with("gd")) |> 
+  drop_na() |> 
+  mutate(
+    wt_gain = gd18_weight - gd0_weight
+  )
+
+```
+
+```{r}
+pups_df = 
+  read_csv("data/FAS_pups.csv",na = c("NA",".",""), skip = 3) |>
+  janitor::clean_names() |> 
+  filter(sex == 1) |> 
+  select( - pd_ears) |> 
+  mutate(
+    pd_pivot_ge7 = pd_pivot >= 7
+  )
+```
+
+
+
