@@ -18,10 +18,18 @@ Let's first import the datasets
 litters_df=
   read_csv("data/FAS_litters.csv", na = c("NA",".",""))
 
+litters_df=
+  janitor::clean_names(litters_df)
+
 pups_df=
     read_csv("data/FAS_pups.csv", na = c("NA",".",""),skip = 3)
 
 pups_df = 
   janitor::clean_names(pups_df)
+
+pups_df = 
+  janitor::clean_names(pups_df)
 ```
+
+
 
