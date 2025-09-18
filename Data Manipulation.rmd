@@ -1,0 +1,27 @@
+---
+title: "Data Manipulation"
+author: "Bohan Zhu"
+date: "2025-09-18"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+Let's first import the datasets
+```{r}
+litters_df=
+  read_csv("data/FAS_litters.csv", na = c("NA",".",""))
+
+pups_df=
+    read_csv("data/FAS_pups.csv", na = c("NA",".",""),skip = 3)
+
+pups_df = 
+  janitor::clean_names(pups_df)
+```
+
